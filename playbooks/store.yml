@@ -1,0 +1,30 @@
+---
+- hosts: store
+  become: yes
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  roles:
+    - role: ../roles/misc
+      tags:
+        - vendor
+        - misc
+    - role: geerlingguy.git
+      tags:
+        - vendor
+        - git
+    - role: geerlingguy.ntp
+      tags:
+        - vendor
+        - ntp
+    - role: geerlingguy.nginx
+      tags:
+        - app
+        - nginx
+    - role: geerlingguy.php
+      tags:
+        - app
+        - php
+    # - role: geerlingguy.supervisor
+    #   tags:
+    #     - app
+    #     - supervisor

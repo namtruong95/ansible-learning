@@ -1,0 +1,44 @@
+---
+# geerlingguy.php
+php_packages:
+  - php7.2
+  - php7.2-common
+  - php7.2-cli
+  - php7.2-dev
+  - php7.2-fpm
+  - libpcre3-dev
+  - php7.2-gd
+  - php7.2-curl
+  - php7.2-imap
+  - php7.2-json
+  - php7.2-opcache
+  - php7.2-xml
+  - php7.2-mbstring
+  - php-apcu
+  - php7.2-pgsql
+php_webserver_daemon: nginx
+php_enable_php_fpm: true
+php_conf_paths:
+  - /etc/php/7.2/fpm
+  - /etc/php/7.2/cli
+php_extension_conf_paths:
+  - /etc/php/7.2/fpm/conf.d
+  - /etc/php/7.2/cli/conf.d
+php_fpm_daemon: php7.2-fpm
+php_fpm_conf_path: "/etc/php/7.2/fpm"
+
+# geerlingguy.nginx
+nginx_server_tokens: "off"
+nginx_client_max_body_size: "10m"
+nginx_remove_default_vhost: true
+# nginx_upstreams:
+
+nginx_vhosts:
+  - listen: "80 default_server"
+    server_name: '""'
+    access_log: "off"
+    filename: "default.conf"
+    extra_parameters: |
+      location /health {
+        return 200;
+      }

@@ -1,0 +1,29 @@
+---
+- name: Add PHP v7.2 repository
+  apt_repository: repo=ppa:ondrej/php state=present
+
+- name: Update all the packages
+  apt:
+    update_cache: yes
+
+- name: Install prerequisites
+  apt: >
+    name={{ item }}
+    state=present
+  with_items:
+    - vim
+    - telnet
+
+- name: Ensure the OS already has swap partition
+  script: swapfile.sh
+
+- name: Ensure the SSH key is generated
+  command: ssh-keygen -t rsa -f /home/ubuntu/.ssh/id_rsa -N ''
+  args:
+    creates: /home/ubuntu/.ssh/id_rsa
+
+- name: Download the generated SSH key
+  fetch:
+    src: "/home/ubuntu/.ssh/id_rsa.pub"
+    dest: "../data/ssh-keys/{{ inventory_hostname }}_id_rsa.pub"
+    flat: yes

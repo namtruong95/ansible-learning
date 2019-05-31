@@ -5,3 +5,4 @@
 - src: geerlingguy.nginx
 - src: geerlingguy.supervisor
 - src: AerisCloud.image-manipulation
+- src: geerlingguy.nodejs

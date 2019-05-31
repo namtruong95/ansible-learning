@@ -24,6 +24,10 @@
       tags:
         - app
         - php
+    - role: geerlingguy.nodejs
+      tags:
+        - app
+        - nodejs
     # - role: geerlingguy.supervisor
     #   tags:
     #     - app

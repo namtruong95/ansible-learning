@@ -1,2 +1,2 @@
 ---
-- include: playbooks/store.yml
+- import_playbook: playbooks/store.yml

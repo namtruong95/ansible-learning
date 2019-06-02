@@ -1,0 +1,27 @@
+---
+- name: Create APP Directory
+  file: path=/var/www/frontend state=directory
+
+- name: Copy nodejs app
+  copy:
+    src: ./
+    dest: /var/www/frontend
+
+- name: create html path
+  file: path=/var/www/frontend/html state=directory owner=ubuntu group=ubuntu mode=ug+rwx recurse=yes
+
+- name: Create index.html file
+  template: src=index.html.template dest=/var/www/frontend/html/index.html
+
+- name: Running NPM install nodejs app
+  command: yarn install chdir=/var/www/frontend
+
+- name: Stop APP
+  become_user: ubuntu
+  command: pm2 stop /var/www/frontend/ecosystem.config.js
+  ignore_errors: yes
+
+- name: Start APP
+  become_user: ubuntu
+  command: pm2 start chdir=/var/www/frontend
+  ignore_errors: yes

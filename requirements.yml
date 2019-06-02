@@ -3,6 +3,5 @@
 - src: geerlingguy.ntp
 - src: geerlingguy.php
 - src: geerlingguy.nginx
-- src: geerlingguy.supervisor
 - src: AerisCloud.image-manipulation
 - src: geerlingguy.nodejs

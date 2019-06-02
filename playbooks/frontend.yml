@@ -1,8 +1,11 @@
 ---
-- hosts: store
+- hosts: frontend
   become: yes
+  remote_user: ubuntu
+  become_method: sudo
   vars:
-    ansible_python_interpreter: /usr/bin/python3
+    - ansible_python_interpreter: /usr/bin/python3
+
   roles:
     - role: ../roles/misc
       tags:
@@ -28,7 +31,7 @@
       tags:
         - app
         - nodejs
-    # - role: geerlingguy.supervisor
-    #   tags:
-    #     - app
-    #     - supervisor
+    - role: ../roles/angular-pm2
+      tags:
+        - app
+        - nodejs

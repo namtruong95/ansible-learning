@@ -45,9 +45,9 @@ nginx_vhosts:
 
 # geerlingguy.nodejs
 nodejs_version: "10.x"
-nodejs_install_npm_user: root
+nodejs_install_npm_user: ubuntu
 nodejs_npm_global_packages:
-  - name: pm2
-    version: 3.5.1
-  - name: yarn
-    version: 1.16.0
+ - name: pm2
+   version: 3.5.1
+ - name: yarn
+   version: 1.16.0

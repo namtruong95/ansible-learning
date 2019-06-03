@@ -11,14 +11,14 @@
   template: src=index.html.template dest=/var/www/frontend/html/index.html
 
 - name: Running NPM install nodejs app
-  command: yarn install chdir=/var/www/frontend
+  command: /usr/local/lib/npm/bin/yarn install chdir=/var/www/frontend
 
 - name: Stop APP
   become_user: ubuntu
-  command: pm2 stop /var/www/frontend/ecosystem.config.js
+  command: /usr/local/lib/npm/bin/pm2 stop /var/www/frontend/ecosystem.config.js
   ignore_errors: yes
 
 - name: Start APP
   become_user: ubuntu
-  command: pm2 start chdir=/var/www/frontend
+  command: /usr/local/lib/npm/bin/pm2 start chdir=/var/www/frontend
   ignore_errors: yes

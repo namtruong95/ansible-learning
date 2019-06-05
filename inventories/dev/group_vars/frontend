@@ -27,22 +27,6 @@ php_extension_conf_paths:
 php_fpm_daemon: php7.2-fpm
 php_fpm_conf_path: "/etc/php/7.2/fpm"
 
-# geerlingguy.nginx
-nginx_server_tokens: "off"
-nginx_client_max_body_size: "10m"
-nginx_remove_default_vhost: true
-# nginx_upstreams:
-
-nginx_vhosts:
-  - listen: "80 default_server"
-    server_name: '""'
-    access_log: "off"
-    filename: "default.conf"
-    extra_parameters: |
-      location /health {
-        return 200;
-      }
-
 # geerlingguy.nodejs
 nodejs_version: "10.x"
 nodejs_install_npm_user: ubuntu

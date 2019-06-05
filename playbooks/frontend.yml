@@ -23,6 +23,10 @@
       tags:
         - app
         - nginx
+    - role: ../roles/h5bp
+      tags:
+        - app
+        - nginx
     - role: geerlingguy.php
       tags:
         - app
@@ -31,7 +35,7 @@
       tags:
         - app
         - nodejs
-    - role: ../roles/angular-pm2
-      tags:
-        - app
-        - nodejs
+    # - role: ../roles/angular-pm2
+    #   tags:
+    #     - app
+    #     - nodejs

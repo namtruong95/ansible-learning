@@ -1,0 +1,51 @@
+---
+- name: Stop nginx
+  command: service nginx stop
+- name: update nginx config
+  copy:
+    src: ./sites-available
+    dest: /etc/nginx
+
+# - name: link sites-available to sites-sites-enabled
+# file:
+#   src: /etc/nginx/sites-available/{{ item.src }}
+#   dest: /etc/nginx/sites-enabled/{{ item.path }}
+#   state: link
+#   force: yes
+#   mode: "{{ item.mode }}"
+# with_filetree: /etc/nginx/sites-enabled/
+# when: item.state == 'link'
+
+- name: update h5bp
+  copy:
+    src: ./h5bp
+    dest: /etc/nginx
+
+- name: update mime.types
+  copy:
+    src: ./mime.types
+    dest: /etc/nginx
+
+- name: update nginx.conf
+  copy:
+    src: ./nginx.conf
+    dest: /etc/nginx
+
+- name: create app api
+  file: path=/var/www/api/current state=directory owner=ubuntu group=ubuntu mode=ug+rwx recurse=yes
+
+- name: init app api
+  copy:
+    src: ./html/api/index.html
+    dest: /var/www/api/current
+
+- name: create app admin-web
+  file: path=/var/www/admin-web/current state=directory owner=ubuntu group=ubuntu mode=ug+rwx recurse=yes
+
+- name: init app admin-web
+  copy:
+    src: ./html/admin-web/index.html
+    dest: /var/www/admin-web/current
+
+- name: reload nginx
+  command: service nginx start

@@ -7,12 +7,8 @@
     update_cache: yes
 
 - name: Install prerequisites
-  apt: >
-    name={{ item }}
-    state=present
-  with_items:
-    - vim
-    - telnet
+  apt:
+    name: ['vim', 'telnet']
 
 - name: Ensure the OS already has swap partition
   script: swapfile.sh
